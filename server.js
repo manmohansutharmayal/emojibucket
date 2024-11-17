@@ -3,10 +3,15 @@ import fetch from "node-fetch";
 import cors from "cors";
 
 const app = express();
-const PORT = process.env.PORT || 5000; // Use dynamic PORT from Render
+const PORT = process.env.PORT || 5000; // Use dynamic port provided by Render
 
 // Enable CORS for all routes
 app.use(cors());
+
+// Root route to display a welcome message
+app.get("/", (req, res) => {
+  res.send("Welcome to the EmojiBucket API! Navigate to /api/emojis to fetch emoji data.");
+});
 
 // API endpoint to fetch emojis
 app.get("/api/emojis", async (req, res) => {
@@ -22,5 +27,5 @@ app.get("/api/emojis", async (req, res) => {
 
 // Start the server
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
